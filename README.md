@@ -1,24 +1,37 @@
-# README - Script do Banco de Dados
+# README - Banco de Dados e Ambiente Local
 
-Este repositório contém apenas o script SQL para criar o banco de dados do projeto final da matéria de BD.
+Este repositório contém o script SQL para criar o banco de dados do projeto final de BD, além de instruções para rodar um ambiente PHP simples com MySQL via Docker.
 
 ## Como executar
 
-### 1. Executar via navegador
+### 1. Subir o MySQL com Docker
 
-Caso tenha uma interface web para gerenciamento do banco (ex: phpMyAdmin, Adminer):
+Certifique-se de ter o [Docker](https://www.docker.com/) instalado. No terminal, execute:
 
-- Acesse https://sqliteonline.com/
-- Procure a opção para importar ou executar scripts SQL.
-- Selecione o arquivo `criar-tabelas.sql` do repositório.
-- Execute o script para criar o banco de dados.
+```sh
+docker run --name mysql-pjdb -e MYSQL_ROOT_PASSWORD=senha123 -e MYSQL_DATABASE=pjdb -p 3306:3306 -d mysql:8
+```
 
-### 2. Executar localmente
+- `MYSQL_ROOT_PASSWORD=senha123`: define a senha do usuário root.
+- `MYSQL_DATABASE=pjdb`: cria o banco de dados `pjdb`.
 
-Para rodar o script localmente, siga os passos abaixo:
+### 2. Importar o script SQL
 
-- Tenha um servidor de banco de dados instalado (ex: MySQL, PostgreSQL, SQLite).
-- Abra seu cliente de banco de dados (ex: MySQL Workbench, pgAdmin, DB Browser for SQLite).
-- Importe ou execute o arquivo `criar-tabelas.sql` no seu banco local.
-- O script criará as tabelas e inserirá os dados iniciais.
+Após o container estar rodando, importe o script:
+
+```sh
+docker exec -i mysql-pjdb mysql -uroot -psenha123 pjdb < criar-tabelas.sql
+```
+
+### 3. Rodar o servidor PHP embutido
+
+Com o PHP instalado localmente, execute na pasta do projeto:
+
+```sh
+php -S localhost:8000
+```
+
+Acesse [http://localhost:8000](http://localhost:8000) no navegador para visualizar o projeto PHP.
+
+---
 

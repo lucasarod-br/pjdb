@@ -1,0 +1,36 @@
+# Banco de dados SQLite
+database/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Arquivos temporários
+tmp/
+temp/
+
+# Configurações locais
+config/database.local.php
+
+# Cache
+cache/
+
+# Uploads
+uploads/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências (caso adicione Composer futuramente)
+vendor/
+composer.lock
